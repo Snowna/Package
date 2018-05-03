@@ -9,6 +9,7 @@ class Package(models.Model):
     staff_company = models.CharField(max_length=50, default='')
     staff_price = models.CharField(max_length=100, default='')
     package_company = models.CharField(max_length=100)
+    tracking_url = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return self.tracking_num + '-' + self.package_type
