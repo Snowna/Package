@@ -36,7 +36,7 @@ def index(request):
         query = request.GET.get("q")
         if query:
             packages = packages.filter(
-                Q(package_type__contains__icontains=query) |
+                Q(package_type__icontains=query) |
                 Q(package_company__icontains=query)
             ).distinct()
 
@@ -49,7 +49,7 @@ def index(request):
 
 def detail(request, package_id):
     #        package = Package.objects.get(pk=package_id)
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return render(request, 'package/login.html')
     else:
         user = request.user
@@ -59,11 +59,10 @@ def detail(request, package_id):
 
 def report(request):
     #        package = Package.objects.get(pk=package_id)
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return render(request, 'package/login.html')
     else:
-        user = request.user
-        return render(request, 'package/report.html', {'package': package, 'user': user})
+        return render(request, 'package/report.html')
 
 
 # this class is no value for this project

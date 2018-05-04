@@ -22,10 +22,12 @@
                                             <h3>No image to display</h3>
                                         {% endif %}
                                     </a>
-                                    <h1>{{ package.tracking_num }}
-                                        <small>{{ package.package_type }}</small>
+                                    <h1>{{ package.package_type }}
+                                        <small>{{ package.staff_company }}</small>
                                     </h1>
-                                    <h2>{{ package.package_company }}</h2>
+                                    <a href="{% url 'package:detail' package.id %}"> {{ package.tracking_num }}</a>
+                                    </h2>
+                                    <h3>{{ package.package_company }}</h3>
                                     <div class="fb-like" data-href="#"
                                          data-layout="standard" data-action="like" data-size="small"
                                          data-show-faces="true" data-share="true"></div>
