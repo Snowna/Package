@@ -49,8 +49,21 @@ def index(request):
 
 def detail(request, package_id):
     #        package = Package.objects.get(pk=package_id)
-    package = get_object_or_404(Package, pk=package_id)
-    return render(request, 'package/detail.html', {'package': package})
+    if not request.user.is_authenticated():
+        return render(request, 'package/login.html')
+    else:
+        user = request.user
+        package = get_object_or_404(Package, pk=package_id)
+        return render(request, 'package/detail.html', {'package': package, 'user': user})
+
+
+def report(request):
+    #        package = Package.objects.get(pk=package_id)
+    if not request.user.is_authenticated():
+        return render(request, 'package/login.html')
+    else:
+        user = request.user
+        return render(request, 'package/report.html', {'package': package, 'user': user})
 
 
 # this class is no value for this project
