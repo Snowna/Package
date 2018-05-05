@@ -17,4 +17,5 @@ urlpatterns = [
     path('<int:package_id>/delete_package/', views.delete_package, name='delete_package'),
     path('index/profile/', views.profile, name='profile'),
     path('report', views.report, name='report'),
+    path('result', views.result, name='results'),
 ]

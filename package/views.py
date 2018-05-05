@@ -5,6 +5,8 @@ from django.views.generic import View
 from .forms import UserForm, PackageForm
 from django.db.models import Q
 from django.http import JsonResponse
+import requests
+import json
 
 
 def index_v(request):
@@ -175,3 +177,21 @@ def delete_package(request, package_id):
     package.delete()
     packages = Package.objects.filter(user=request.user)
     return render(request, 'package/index.html', {'packages': packages})
+
+
+def result(request, package_id):
+    #        package = Package.objects.get(pk=package_id)
+    if not request.user.is_authenticated:
+        return render(request, 'package/login.html')
+    else:
+        h = {'Content-type': 'application/json', 'api-key': '+jL8YZ7kPZRgU4oRErWl7du+1jrmZKZA3ME45u41XA0'}
+        url = 'https://api.shipengine.com/v1/tracking?carrier_code=ups&tracking_number=1ZE2Y229P218333126'
+        r = requests.get(url, headers=h)
+        txt = 'F:\\trackTest.txt'
+        f = open(txt, "w+")
+        f.write(json.dumps(r.json()))
+        f.close()
+        context = {
+            "form": form,
+        }
+        return render(request, 'package/result.html', context)
