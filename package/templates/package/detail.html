@@ -23,11 +23,15 @@
                                         {% endif %}
                                     </a>
                                     <h1>{{ package.package_type }}
-                                        <small>{{ package.staff_company }}</small>
+                                        <small>{{ package.package_company }}</small>
                                     </h1>
-                                    <a href="{% url 'package:detail' package.id %}"> {{ package.tracking_num }}</a>
-                                    </h2>
-                                    <h3>{{ package.package_company }}</h3>
+                                    <h3>
+                                        <a href="{{ package.tracking_url }}"> {{ package.tracking_num }}</a>
+                                    </h3>
+                                    <h3>Saler: {{ package.staff_company }}</h3>
+                                    <h3>Price: {{ package.staff_price }}</h3>
+                                    <input type="button" style= "width:120px;height: 40px " value="Tracking detail"  onclick="window.location.href('连接') ">
+                                <p></p>
                                     <div class="fb-like" data-href="#"
                                          data-layout="standard" data-action="like" data-size="small"
                                          data-show-faces="true" data-share="true"></div>
