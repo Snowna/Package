@@ -183,7 +183,7 @@ def result(request, package_id):
     else:
         package = Package.objects.get(pk=package_id)
         h = {'Content-type': 'application/json', 'api-key': '+jL8YZ7kPZRgU4oRErWl7du+1jrmZKZA3ME45u41XA0'}
-        url = 'https://api.shipengine.com/v1/tracking?carrier_code=ups&tracking_number=1ZE2Y229P218333126'
+        url = 'https://api.shipengine.com/v1/tracking?carrier_code=ups&tracking_number='+package.tracking_num
         r = requests.get(url, headers=h)
         txt = 'D:\\trackTest.txt'
         f = open(txt, "w+")
