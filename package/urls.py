@@ -16,6 +16,6 @@ urlpatterns = [
     path('create_package/', views.create_package, name='create_package'),
     path('<int:package_id>/delete_package/', views.delete_package, name='delete_package'),
     path('index/profile/', views.profile, name='profile'),
-    path('report', views.report, name='report'),
-    path('result', views.result, name='results'),
+    path('report/', views.report, name='report'),
+    path('index/<int:package_id>/result/', views.result, name='result'),
 ]

@@ -82,15 +82,12 @@ class UserFormView(View):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-
             user = form.save(commit=False)
-
             # cleaned (normalized) data
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user.set_password(password)
             user.save()
-
             # returns User objects if credentials are correct
             user = authenticate(username=username, password=password)
 
@@ -184,14 +181,22 @@ def result(request, package_id):
     if not request.user.is_authenticated:
         return render(request, 'package/login.html')
     else:
+        package = Package.objects.get(pk=package_id)
         h = {'Content-type': 'application/json', 'api-key': '+jL8YZ7kPZRgU4oRErWl7du+1jrmZKZA3ME45u41XA0'}
         url = 'https://api.shipengine.com/v1/tracking?carrier_code=ups&tracking_number=1ZE2Y229P218333126'
         r = requests.get(url, headers=h)
-        txt = 'F:\\trackTest.txt'
+        txt = 'D:\\trackTest.txt'
         f = open(txt, "w+")
         f.write(json.dumps(r.json()))
         f.close()
-        context = {
-            "form": form,
-        }
-        return render(request, 'package/result.html', context)
+        with open(txt, 'r') as ff:
+            lines = ff.read().split(',')
+        ff.close()
+
+        return render(request, 'package/result.html', {
+            "tracking_num": lines[0],
+            "ship_date": lines[5],
+            "status": lines[2],
+            "estimated_delivery_data": lines[6],
+            "actual_data": lines[7],
+        })

@@ -30,7 +30,7 @@
                                     </h3>
                                     <h3>Saler: {{ package.staff_company }}</h3>
                                     <h3>Price: {{ package.staff_price }}</h3>
-                                    <input type="button" style= "width:120px;height: 40px " value="Tracking detail"  onclick="window.location.href('连接') ">
+                                    <input type="button" name="test" value="Tracking Detail" onClick="location.href= '{% url 'package:result' package.id %}'"/>
                                 <p></p>
                                     <div class="fb-like" data-href="#"
                                          data-layout="standard" data-action="like" data-size="small"

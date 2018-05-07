@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'package/base.html' %}
+{% block title %}Log In{% endblock %}
+{% block login_active %}active{% endblock %}
 
-</body>
-</html>
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Panel with list and no body</h3>
+                    </div>
+                    <ul class="list-group">
+                        <a href="#" class="list-group-item">
+                            {% if tracking_num %}
+                                <p><strong>{{ tracking_num }}</strong></p>
+                            {% endif %}
+                            <a/>
+                            <a href="#" class="list-group-item">
+                                {% if status %}
+                                    <p><strong>{{ status }}</strong></p>
+                                {% endif %}<a/>
+                                <a href="#" class="list-group-item">
+                            {% if ship_date %}
+                                <p><strong>{{ ship_date }}</strong></p>
+                            {% endif %}<a/>
+                               <a href="#" class="list-group-item">
+                            {% if estimated_delivery_data %}
+                                <p><strong>{{ estimated_delivery_data }}</strong></p>
+                            {% endif %}<a/>
+                               <a href="#" class="list-group-item">
+                            {% if actual_data %}
+                                <p><strong>{{ actual_data }}</strong></p>
+                            {% endif %}<a/>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
